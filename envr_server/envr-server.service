@@ -1,0 +1,18 @@
+[Unit]
+Description=envr snapshot server
+After=network.target
+
+[Service]
+Type=simple
+Environment=ENVR_SERVER_PORT=8000
+Environment=ENVR_DB_PATH=/srv/envr/metadata.db
+Environment=ENVR_KEY_PATH=/etc/envr/server.key
+Environment=ENVR_SNAPSHOTS_DIR=/srv/envr/snapshots
+ExecStart=/usr/bin/env uv run uvicorn envr_server.main:app --host 0.0.0.0 --port ${ENVR_SERVER_PORT}
+Restart=on-failure
+RestartSec=2
+User=envr
+Group=envr
+
+[Install]
+WantedBy=multi-user.target
