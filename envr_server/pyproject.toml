@@ -1,0 +1,17 @@
+[project]
+name = "envr-server"
+version = "0.1.0"
+description = "envr FastAPI server for signed uv.lock snapshots"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn>=0.30.0",
+  "cryptography>=42.0.0",
+]
+
+[project.scripts]
+envr-server = "envr_server.main:run"
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
